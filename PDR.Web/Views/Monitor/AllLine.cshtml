@@ -1,12 +1,12 @@
 ﻿@model PDR.Web.ViewModels.MonitorViewModel
 
 @{
-    ViewBag.Title = "AllZone";
+    ViewBag.Title = "All Zone";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row headerRow">
-    @Html.Partial("_MonitorHeader")
+    @Html.Partial("_MonitorHeaderAll")
 </div>
 
 @if (Model.Monitors.Count == 0)
@@ -18,7 +18,7 @@ else
     foreach (var monitor in Model.Monitors)
     {
         <div class="row detailRow">
-            @Html.Partial("_MonitorDetail", monitor)
+            @Html.Partial("_MonitorDetailAll", monitor)
         </div>
     }
 

@@ -1,7 +1,9 @@
 ﻿@model PDR.Web.ViewModels.MonitorViewModel
 
 @{
-    ViewBag.Title = "Zone";
+    var zoneGroup = Model.Monitors.Select(z => z.DISPLAY_GROUP).FirstOrDefault();
+
+    ViewBag.Title = "Zone " + zoneGroup;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 

@@ -121,7 +121,6 @@
     .blue {
         color: white;
     }
-
 </style>
 
 <div class="col">
@@ -131,13 +130,15 @@
             <tr>
                 <td style="width: 10%;" class="detailCell"><b>@Model.LINE_NAME</b></td>
                 <td style="width: 16%;" class="detailCell statusCell @statusColor"><b>@statusName</b></td>
-                <td style="width: 16%;" class="detailCell"><b>@plan</b></td>
-                <td style="width: 16%;" class="detailCell"><b>@actual</b></td>
-                <td style="width: 16%;" class="detailCell @diffColor"><b>@diff</b></td>
-                <td style="width: 13%;" class="detailCell"><b>@defect</b></td>
-                <td style="width: 13%;" class="detailCell"><b>@loss</b></td>
+                <td style="width: 13%;" class="detailCell"><b>@plan</b></td>
+                <td style="width: 13%;" class="detailCell"><b>@actual</b></td>
+                <td style="width: 13%;" class="detailCell @diffColor"><b>@diff</b></td>
+                <td style="width: 13%;" class="detailCell @hourColor"><b>@hour</b></td>
+                <td style="width: 11%;" class="detailCell"><b>@defect</b></td>
+                <td style="width: 11%;" class="detailCell"><b>@loss</b></td>
             </tr>
         </tbody>
     </table>
 
 </div>
+

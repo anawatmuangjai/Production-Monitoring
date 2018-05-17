@@ -2,10 +2,6 @@
 @model PDR.Web.Models.PROD_MONITOR
 
 @{
-    var classStatusColor = string.Empty;
-    var classPlanDiff = string.Empty;
-    var classAchieve = string.Empty;
-
     var planShot = Model.PLAN_SHOT;
     var actualShot = Model.ACTUAL_SHOT;
     var planDiff = Model.PLAN_DIFF;
@@ -26,8 +22,6 @@
     double achieve = 0;
     var achieveText = string.Empty;
 
-    classAchieve = "green";
-
     if (planShot != 0)
     {
         var percentage = ((double)actualShot / planShot) * 100;
@@ -39,20 +33,23 @@
         achieveText = "0%";
     }
 
+    var statusColor = string.Empty;
+    var hourColor = string.Empty;
+    var achieveColor = "green";
 
     if (planDiff < 0 && status == 1)
     {
-        classStatusColor = "red";
-        classAchieve = "white";
+        statusColor = "red";
+        achieveColor = "white";
     }
     else if (planDiff >= 0 && status == 1)
     {
-        classPlanDiff = "green";
-        classStatusColor = "black";
+        hourColor = "green";
+        statusColor = "black";
     }
     else
     {
-        classStatusColor = color;
+        statusColor = color;
     }
 
 }
@@ -75,15 +72,19 @@
     }
 
     .blue {
-        background-color: #185cfc;
+        background-color: #0845d7;
     }
 
     .orange {
         background-color: #ed6206;
     }
+
+    .pink {
+        background-color: #f135db;
+    }
 </style>
 
-<div class="@classStatusColor">
+<div class="@statusColor">
 
     @if (status == 1)
     {
@@ -92,11 +93,11 @@
                 <tr class="statusRow">
                     <td class="statusLine" rowspan="4">@Model.LINE_NAME</td>
                     <td class="statusTitle">HOUR:</td>
-                    <td class="statusValue @classPlanDiff">@hour</td>
+                    <td class="statusValue @hourColor">@hour</td>
                 </tr>
                 <tr class="statusRow">
                     <td class="statusTitle">%ACH:</td>
-                    <td class="statusValue @classAchieve">@achieveText</td>
+                    <td class="statusValue @achieveColor">@achieveText</td>
                 </tr>
                 <tr class="statusRow">
                     <td class="statusTitle">SMLD:</td>
