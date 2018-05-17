@@ -1,0 +1,26 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Production Moinitoring", "Index", "Monitor", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Status", "Status", "Monitor")</li>
+                <li>@Html.ActionLink("Zone A1", "Zone", "Monitor", new { group = "A1" }, null)</li>
+                <li>@Html.ActionLink("Zone A2", "Zone", "Monitor", new { group = "A2" }, null)</li>
+                <li>@Html.ActionLink("Zone B1", "Zone", "Monitor", new { group = "B1" }, null)</li>
+                <li>@Html.ActionLink("Zone B2", "Zone", "Monitor", new { group = "B2" }, null)</li>
+                <li>@Html.ActionLink("Zone C1", "Zone", "Monitor", new { group = "C1" }, null)</li>
+                <li>@Html.ActionLink("Zone C2", "Zone", "Monitor", new { group = "C2" }, null)</li>
+                <li>@Html.ActionLink("Zone F1", "Zone", "Monitor", new { group = "F1" }, null)</li>
+                <li>@Html.ActionLink("ALL", "AllLine", "Monitor")</li>
+            </ul>
+        </div>
+    </div>
+</div>

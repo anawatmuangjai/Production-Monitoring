@@ -1,0 +1,24 @@
+﻿@model PDR.Web.ViewModels.MonitorViewModel
+
+@{
+    ViewBag.Title = "Status";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Monitors.Count == 0)
+{
+    <h2>No data for display</h2>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="row statusBox">
+            @foreach (var monitor in Model.Monitors)
+            {
+                <div class="col-md-2 statusBox">
+                    @Html.Partial("_MonitorStatus", monitor)
+                </div>
+            }
+        </div>
+    </div>
+}

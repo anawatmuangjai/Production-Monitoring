@@ -1,0 +1,163 @@
+﻿
+@model PDR.Web.Models.PROD_MONITOR
+
+@{
+    var plan = string.Empty;
+    var acutal = string.Empty;
+    var diff = string.Empty;
+    var classDiff = string.Empty;
+    var classLine = string.Empty;
+    var classColor = string.Empty;
+
+    var status = Model.ID_MST_LOSS_GROUP;
+    var planShot = Model.PLAN_SHOT;
+    var acutalShot = Model.ACTUAL_SHOT;
+    var statusName = Model.MST_LOSS_GROUP.STATUS_NAME;
+    var defect = Model.NG_QTY.ToString();
+    var loss = Model.LOSS_TIME.ToString();
+
+    var shotDiff = acutalShot - planShot;
+    var color = Model.MST_LOSS_GROUP.B_COLOR.ToLower();
+
+    var planLength = planShot.ToString().Length;
+
+    if (planLength > 3)
+    {
+        if (planLength > 6)
+        {
+            var result = ((double)planShot / 1000000);
+            plan = result.ToString("#.##") + "M";
+        }
+        else
+        {
+            var result = (planShot / 1000);
+            plan = result + "K";
+        }
+    }
+    else
+    {
+        plan = planShot.ToString();
+    }
+
+    var acutalLength = acutalShot.ToString().Length;
+
+    if (acutalLength > 3)
+    {
+        if (acutalLength > 6)
+        {
+            var result = ((double)acutalShot / 1000000);
+            acutal = result.ToString("#.##") + "M";
+        }
+        else
+        {
+
+            var result = (acutalShot / 1000);
+            acutal = result + "K";
+        }
+    }
+    else
+    {
+        acutal = acutalShot.ToString();
+    }
+
+    var shotDiffLength = shotDiff.ToString().Length;
+
+    if (shotDiff >= 1000 || shotDiff <= -1000)
+    {
+        if (shotDiff.ToString().StartsWith("-"))
+        {
+            if (shotDiffLength > 7)
+            {
+                diff = shotDiff.ToString().Substring(0, shotDiff.ToString().Length - 6) + "M";
+            }
+            else
+            {
+                diff = shotDiff.ToString().Substring(0, shotDiff.ToString().Length - 3) + "K";
+            }
+        }
+        else
+        {
+            if (shotDiffLength > 6)
+            {
+                diff = shotDiff.ToString().Substring(0, shotDiff.ToString().Length - 6) + "M";
+            }
+            else
+            {
+
+                diff = shotDiff.ToString().Substring(0, shotDiff.ToString().Length - 3) + "K";
+            }
+        }
+
+    }
+    else
+    {
+        diff = shotDiff.ToString();
+    }
+
+    if (diff.StartsWith("-"))
+    {
+        classDiff = "red";
+    }
+    else
+    {
+        classDiff = "green";
+    }
+
+    classColor = color;
+    classLine = "lineName";
+
+    if (status == 3)
+    {
+        plan = "-";
+        acutal = "-";
+        diff = "-";
+        defect = "-";
+        loss = "-";
+    }
+}
+
+<style type="text/css">
+
+    .green {
+        color: #24e53a;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .orange {
+        color: orange;
+    }
+
+    .yellow {
+        color: yellow;
+    }
+
+    .white {
+        color: white;
+    }
+
+    .blue {
+        color: white;
+    }
+
+</style>
+
+<div class="col">
+
+    <table class="detailTable">
+        <tbody>
+            <tr>
+                <td style="width: 10%;" class="detailCell"><b>@Model.LINE_NAME</b></td>
+                <td style="width: 16%;" class="detailCell statusCell @classColor"><b>@statusName</b></td>
+                <td style="width: 16%;" class="detailCell"><b>@plan</b></td>
+                <td style="width: 16%;" class="detailCell"><b>@acutal</b></td>
+                <td style="width: 16%;" class="detailCell @classDiff"><b>@diff</b></td>
+                <td style="width: 13%;" class="detailCell"><b>@defect</b></td>
+                <td style="width: 13%;" class="detailCell"><b>@loss</b></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,126 @@
+﻿
+@model PDR.Web.Models.PROD_MONITOR
+
+@{
+    var classStatusColor = string.Empty;
+    var classPlanDiff = string.Empty;
+    var classAchieve = string.Empty;
+
+    var planShot = Model.PLAN_SHOT;
+    var actualShot = Model.ACTUAL_SHOT;
+    var planDiff = Model.PLAN_DIFF;
+    var status = Model.ID_MST_LOSS_GROUP;
+    var color = Model.MST_LOSS_GROUP.B_COLOR.ToLower();
+
+    var hour = TimeSpan.FromMinutes(planDiff).ToString("h\\:mm");
+
+    if (planDiff < 0)
+    {
+        hour = "-" + hour + "H";
+    }
+    else
+    {
+        hour = "+" + hour + "H";
+    }
+
+    double achieve = 0;
+    var achieveText = string.Empty;
+
+    classAchieve = "green";
+
+    if (planShot != 0)
+    {
+        var percentage = ((double)actualShot / planShot) * 100;
+        achieve = Math.Round(percentage, 2);
+        achieveText = achieve + "%";
+    }
+    else
+    {
+        achieveText = "0%";
+    }
+
+
+    if (planDiff < 0 && status == 1)
+    {
+        classStatusColor = "red";
+        classAchieve = "white";
+    }
+    else if (planDiff >= 0 && status == 1)
+    {
+        classPlanDiff = "green";
+        classStatusColor = "black";
+    }
+    else
+    {
+        classStatusColor = color;
+    }
+
+}
+
+<style type="text/css">
+    .white {
+        color: #ffffff;
+    }
+
+    .green {
+        color: #4cff00;
+    }
+
+    .black {
+        background-color: #000000;
+    }
+
+    .red {
+        background-color: #aa2a2a;
+    }
+
+    .blue {
+        background-color: #185cfc;
+    }
+
+    .orange {
+        background-color: #ed6206;
+    }
+</style>
+
+<div class="@classStatusColor">
+
+    @if (status == 1)
+    {
+        <table class="statusTable">
+            <tbody>
+                <tr class="statusRow">
+                    <td class="statusLine" rowspan="4">@Model.LINE_NAME</td>
+                    <td class="statusTitle">HOUR:</td>
+                    <td class="statusValue @classPlanDiff">@hour</td>
+                </tr>
+                <tr class="statusRow">
+                    <td class="statusTitle">%ACH:</td>
+                    <td class="statusValue @classAchieve">@achieveText</td>
+                </tr>
+                <tr class="statusRow">
+                    <td class="statusTitle">SMLD:</td>
+                    <td class="statusValue">@Model.NG_QTY</td>
+                </tr>
+                <tr class="statusRow">
+                    <td class="statusTitle">LOSS:</td>
+                    <td class="statusValue">@Model.LOSS_TIME</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <table class="statusTable">
+            <tbody>
+                <tr>
+                    <td class="statusMessage statusMessageLine">@Model.LINE_NAME</td>
+                </tr>
+                <tr>
+                    <td class="statusMessage">@Model.MST_LOSS_GROUP.STATUS_NAME</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+
+</div>

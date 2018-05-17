@@ -1,0 +1,25 @@
+﻿@model PDR.Web.ViewModels.MonitorViewModel
+
+@{
+    ViewBag.Title = "AllZone";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row headerRow">
+    @Html.Partial("_MonitorHeader")
+</div>
+
+@if (Model.Monitors.Count == 0)
+{
+    <text>No data for display</text>
+}
+else
+{
+    foreach (var monitor in Model.Monitors)
+    {
+        <div class="row detailRow">
+            @Html.Partial("_MonitorDetail", monitor)
+        </div>
+    }
+}
