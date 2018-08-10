@@ -3,10 +3,6 @@ using Autofac.Integration.Mvc;
 using PDR.Web.Controllers;
 using PDR.Web.Core;
 using PDR.Web.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PDR.Web.IoC

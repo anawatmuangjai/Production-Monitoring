@@ -1,10 +1,8 @@
 namespace PDR.Web.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("PDR.MST_LOSS_GROUP")]
     public partial class MST_LOSS_GROUP
