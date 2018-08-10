@@ -1,0 +1,1 @@
+﻿{"ContextClassName":"PDRContext","DefaultDacpacSchema":null,"IdReplace":false,"IncludeConnectionString":true,"OutputPath":"Entities","ProjectRootNamespace":"PDR.Infrastructure","SelectedToBeGenerated":2,"Tables":["PDR.MST_LOSS_GROUP","PDR.PROD_MONITOR"],"UseDatabaseNames":false,"UseFluentApiOnly":true,"UseHandleBars":false,"UseInflector":false}
