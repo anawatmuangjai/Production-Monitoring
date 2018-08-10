@@ -1,0 +1,39 @@
+﻿@model MonitorViewModel
+
+@{
+    ViewData["Title"] = "Zone";
+}
+
+<h2>Zone</h2>
+
+@if (Model.MonitorDetails.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>LINE</th>
+                <th>STATUS</th>
+                <th>PLAN</th>
+                <th>ACTUAL</th>
+                <th>DIFF</th>
+                <th>DEFECT</th>
+                <th>LOSS</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.MonitorDetails)
+            {
+                <tr>
+                    <td>@item.LineName</td>
+                    <td>@item.Status.StatusName</td>
+                    <td>@item.PlanShot</td>
+                    <td>@item.ActualShot</td>
+                    <td>@item.PlanDiff</td>
+                    <td>@item.DefectQty</td>
+                    <td>@item.LossTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
